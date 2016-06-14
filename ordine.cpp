@@ -4,6 +4,10 @@
 Ordine::Ordine(Contenitore cont,QDateTime d, Cliente c):ordini(cont),data(d),cli(c)
 {}
 
+Ordine::~Ordine()
+{
+}
+
 void Ordine::inserisciOrdine(Prodotto * p)
 {
     ordini.inserisci(p);
