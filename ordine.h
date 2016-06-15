@@ -13,7 +13,6 @@ private:
     Cliente cli;
 public:
     Ordine(Contenitore =Contenitore(),QDateTime = QDateTime(),Cliente = Cliente());
-    ~Ordine();
     void inserisciOrdine(Prodotto*);
     QDateTime getData() const;
     Cliente getCliente()const;

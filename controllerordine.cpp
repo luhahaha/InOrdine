@@ -193,24 +193,22 @@ void ControllerOrdine::modificaProdotto(int n)
     Prodotto* aux=model->getOrdine(n);
     if(Torta*torta=dynamic_cast<Torta*>(aux)){
         creaTorta(view->n);
-        QDialog* dialbutton=new QDialog(view);
-        QHBoxLayout* layoutdialbutton=new QHBoxLayout(dialbutton);
-        QLabel * peso=new QLabel("Peso(Kg):",dialbutton);
-        MyLineEdit* pesoedit=new MyLineEdit(torta->getPeso().toString(),dialbutton);
-        QLabel * gusto=new QLabel("Gusto:",dialbutton);
-        MyComboBox* gustoedit=new MyComboBox(dialbutton);
+        QDialog* dialbutton=new QDialog();
+        QHBoxLayout* layoutdialbutton=new QHBoxLayout();
+        QLabel * peso=new QLabel("Peso(Kg):");
+        MyLineEdit* pesoedit=new MyLineEdit(torta->getPeso().toString());
+        QLabel * gusto=new QLabel("Gusto:");
+        MyComboBox* gustoedit=new MyComboBox();
         gustoedit->setEditable(true);
         gustoedit->addItem("Della casa");
         gustoedit->addItem("Pan di spagna con chantilly e fragole");
-        gustoedit->addItem("Pan di spagna con crema al cioccolato");
-        gustoedit->addItem("Mille foglie con crema chantilly");
-        gustoedit->setEditText(torta->getGusto());
-        MyCheckBox* immaginecheck=new MyCheckBox("Con immagine",dialbutton);
+        gustoedit->setCurrentText(torta->getGusto());
+        MyCheckBox* immaginecheck=new MyCheckBox("Con immagine");
         if(torta->getImmagine())
             immaginecheck->setChecked(true);
-        QLabel * scritta=new QLabel("Scritta di decorazione:",dialbutton);
-        MyLineEdit* scrittaedit=new MyLineEdit(torta->getScritta(),dialbutton);
-        QPushButton* ok=new QPushButton("Ok",dialbutton);
+        QLabel * scritta=new QLabel("Scritta di decorazione:");
+        MyLineEdit* scrittaedit=new MyLineEdit(torta->getScritta());
+        QPushButton* ok=new QPushButton("Ok");
         layoutdialbutton->addWidget(peso);
         layoutdialbutton->addWidget(pesoedit);
         layoutdialbutton->addWidget(gusto);
@@ -237,21 +235,20 @@ void ControllerOrdine::modificaProdotto(int n)
     else{
         if(Dolce* dolce=dynamic_cast<Dolce*>(aux)){
             creaDolce(view->n);
-            QDialog* dialbutton=new QDialog(view);
-            QHBoxLayout* layoutdialbutton=new QHBoxLayout(dialbutton);
-            QLabel * peso=new QLabel("Peso(Kg):",dialbutton);
-            MyLineEdit* pesoedit=new MyLineEdit(dolce->getPeso().toString(),dialbutton);
-            QLabel * tipo=new QLabel("Tipo:",dialbutton);
-            MyComboBox* tipoedit=new MyComboBox(dialbutton);
+            QDialog* dialbutton=new QDialog();
+            QHBoxLayout* layoutdialbutton=new QHBoxLayout();
+            QLabel * peso=new QLabel("Peso(Kg):");
+            MyLineEdit* pesoedit=new MyLineEdit(dolce->getPeso().toString());
+            QLabel * tipo=new QLabel("Tipo:");
+            MyComboBox* tipoedit=new MyComboBox();
             tipoedit->setEditable(true);
             tipoedit->addItem("Pasticcini");
             tipoedit->addItem("Biscotti");
             tipoedit->addItem("Colomba");
-            tipoedit->addItem("Panettone");
-            tipoedit->setEditText(dolce->getTipo());
-            QLabel * prezzo=new QLabel("Prezzo al Kg:",dialbutton);
-            MyLineEdit* prezzoedit=new MyLineEdit(QString::number(dolce->getPrezzo()),dialbutton);
-            QPushButton* ok=new QPushButton("Ok",dialbutton);
+            tipoedit->setCurrentText(dolce->getTipo());
+            QLabel * prezzo=new QLabel("Prezzo al Kg:");
+            MyLineEdit* prezzoedit=new MyLineEdit(QString::number(dolce->getPrezzo()));
+            QPushButton* ok=new QPushButton("Ok");
             layoutdialbutton->addWidget(peso);
             layoutdialbutton->addWidget(pesoedit);
             layoutdialbutton->addWidget(tipo);
@@ -276,20 +273,20 @@ void ControllerOrdine::modificaProdotto(int n)
             if(Salato* salato=dynamic_cast<Salato*>(aux))
             {
                 creaSalato(view->n);
-                QDialog* dialbutton=new QDialog(view);
-                QHBoxLayout* layoutdialbutton=new QHBoxLayout(dialbutton);
-                QLabel * pezzi=new QLabel("Pezzi:",dialbutton);
-                MyLineEdit* pezziedit=new MyLineEdit(salato->getPezzi().toString(),dialbutton);
-                QLabel * tipo=new QLabel("Tipo:",dialbutton);
-                MyComboBox* tipoedit=new MyComboBox(dialbutton);
+                QDialog* dialbutton=new QDialog();
+                QHBoxLayout* layoutdialbutton=new QHBoxLayout();
+                QLabel * pezzi=new QLabel("Pezzi:");
+                MyLineEdit* pezziedit=new MyLineEdit(salato->getPezzi().toString());
+                QLabel * tipo=new QLabel("Tipo:");
+                MyComboBox* tipoedit=new MyComboBox();
                 tipoedit->setEditable(true);
                 tipoedit->addItem("Tramezzini");
                 tipoedit->addItem("Salatini");
                 tipoedit->addItem("Pizzette");
-                tipoedit->setEditText(salato->getTipo());
-                QLabel * prezzo=new QLabel("Prezzo al Pezzo:",dialbutton);
-                MyLineEdit* prezzoedit=new MyLineEdit(QString::number(salato->getPrezzo()),dialbutton);
-                QPushButton* ok=new QPushButton("Ok",dialbutton);
+                tipoedit->setCurrentText(salato->getTipo());
+                QLabel * prezzo=new QLabel("Prezzo al Pezzo:");
+                MyLineEdit* prezzoedit=new MyLineEdit(QString::number(salato->getPrezzo()));
+                QPushButton* ok=new QPushButton("Ok");
                 layoutdialbutton->addWidget(pezzi);
                 layoutdialbutton->addWidget(pezziedit);
                 layoutdialbutton->addWidget(tipo);
@@ -349,12 +346,6 @@ QDate ControllerOrdine::getData() const
 QTime ControllerOrdine::getOra() const
 {
     return model->getData().time();
-}
-
-ControllerOrdine::~ControllerOrdine()
-{
-    delete model;
-    delete view;
 }
 
 //metodo che inserisce un prodotto nel model e nella view e cambia il valore del preventivo

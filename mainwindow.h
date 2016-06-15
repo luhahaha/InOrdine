@@ -22,7 +22,6 @@ private:
     QLabel* title;
     QPushButton *newOrdine;
     QPushButton *loadOrdine;
-    QVBoxLayout* mainlayout;
     QVBoxLayout *layoutButtons;
     void setTitle();
     void createButtons();

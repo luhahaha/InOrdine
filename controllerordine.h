@@ -44,7 +44,6 @@ public:
     QString getNumero() const;
     QDate getData() const;
     QTime getOra() const;
-    ~ControllerOrdine();
 private:
     Ordine *model;
     ViewOrdine *view;

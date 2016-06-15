@@ -6,8 +6,8 @@ int ViewOrdine::n=0;
 //costruttore della view
 ViewOrdine::ViewOrdine(ControllerOrdine * p, QWidget *parent):QDialog(parent),controller(p)
 {
-    layout=new QVBoxLayout();
-    gridlayout=new QGridLayout();
+    layout=new QVBoxLayout;
+    gridlayout=new QGridLayout;
     setTitle();
     setDateTime();
     setProduct();
@@ -69,7 +69,7 @@ void ViewOrdine::aggiungiRigaProdotto(Prodotto * prod)
         else{
             if(Dolce* dolce=dynamic_cast<Dolce*>(prod))
             {
-                QLabel* tipoprodottolabel=new QLabel("Prodotto Dolce:",this);
+                QLabel* tipoprodottolabel=new QLabel("Prodotto Dolce:");
                 riga->addWidget(tipoprodottolabel);
                 QLabel* pesolabel=new QLabel("Peso(Kg): ",container[n]);
                 riga->addWidget(pesolabel);
@@ -98,7 +98,7 @@ void ViewOrdine::aggiungiRigaProdotto(Prodotto * prod)
             else{
                 if(Salato* salato=dynamic_cast<Salato*>(prod))
                 {
-                    QLabel* tipoprodottolabel=new QLabel("Prodotto Salato:",this);
+                    QLabel* tipoprodottolabel=new QLabel("Prodotto Salato:");
                     riga->addWidget(tipoprodottolabel);
                     QLabel* pezzilabel=new QLabel("Pezzi: ",container[n]);
                     riga->addWidget(pezzilabel);
@@ -137,23 +137,17 @@ ViewOrdine::~ViewOrdine()
 {
 }
 
-void ViewOrdine::closeEvent(QCloseEvent * event)
-{
-    delete controller;
-    event->accept();
-}
-
 //metodoo che crea un dialog per l'inserimento dalla data e dell'ora
 void ViewOrdine::inserisciDataOra()
 {
-    dialbutton=new QDialog(this);
+    dialbutton=new QDialog();
     QVBoxLayout* layoutdialbutton=new QVBoxLayout();
     MyDateTimeEdit* datetimeedit=new MyDateTimeEdit();
     datetimeedit->setMinimumDate(QDate::currentDate());
     datetimeedit->setMinimumTime(QTime(6,30));
     datetimeedit->setTime(controller->getOra());
     datetimeedit->setDate(controller->getData());
-    QPushButton* ok=new QPushButton("Ok",this);
+    QPushButton* ok=new QPushButton("Ok");
     layoutdialbutton->addWidget(datetimeedit);
     layoutdialbutton->addWidget(ok);
     dialbutton->setLayout(layoutdialbutton);
@@ -168,12 +162,12 @@ void ViewOrdine::inserisciDataOra()
 //metodoo che crea un dialog per l'inserimento dal nome del cliente
 void ViewOrdine::inserisciNome()
 {
-    dialbutton=new QDialog(this);
+    dialbutton=new QDialog();
     QVBoxLayout* layoutdialbutton=new QVBoxLayout();
-    MyLineEdit* nameedit=new MyLineEdit(this);
+    MyLineEdit* nameedit=new MyLineEdit();
     nameedit->setPlaceholderText("Nome");
     nameedit->setText(controller->getNome());
-    QPushButton* ok=new QPushButton("Ok",this);
+    QPushButton* ok=new QPushButton("Ok");
     layoutdialbutton->addWidget(nameedit);
     layoutdialbutton->addWidget(ok);
     dialbutton->setLayout(layoutdialbutton);
@@ -187,12 +181,12 @@ void ViewOrdine::inserisciNome()
 //metodoo che crea un dialog per l'inserimento del cognome del cliente
 void ViewOrdine::inserisciCognome()
 {
-    dialbutton=new QDialog(this);
+    dialbutton=new QDialog();
     QVBoxLayout* layoutdialbutton=new QVBoxLayout();
-    MyLineEdit* surnameedit=new MyLineEdit(this);
+    MyLineEdit* surnameedit=new MyLineEdit();
     surnameedit->setPlaceholderText("Cognome");
     surnameedit->setText(controller->getCognome());
-    QPushButton* ok=new QPushButton("Ok",this);
+    QPushButton* ok=new QPushButton("Ok");
     layoutdialbutton->addWidget(surnameedit);
     layoutdialbutton->addWidget(ok);
     dialbutton->setLayout(layoutdialbutton);
@@ -206,13 +200,13 @@ void ViewOrdine::inserisciCognome()
 //metodoo che crea un dialog per l'inserimento del numero del cliente
 void ViewOrdine::inserisciNumero()
 {
-    dialbutton=new QDialog(this);
+    dialbutton=new QDialog();
     QVBoxLayout* layoutdialbutton=new QVBoxLayout();
-    MyLineEdit* numberedit=new MyLineEdit(this);
+    MyLineEdit* numberedit=new MyLineEdit();
     numberedit->setValidator(new QRegExpValidator(QRegExp("[0-9]{5,10}")));
     numberedit->setPlaceholderText("Telefono");
     numberedit->setText(controller->getNumero());
-    QPushButton* ok=new QPushButton("Ok",this);
+    QPushButton* ok=new QPushButton("Ok");
     layoutdialbutton->addWidget(numberedit);
     layoutdialbutton->addWidget(ok);
     dialbutton->setLayout(layoutdialbutton);
@@ -374,7 +368,7 @@ void ViewOrdine::aggiornaCognome(QString x)
     surnamelabel->setText(x);
     surnamebutt->setText("Modifica");
     surnamelabel->setFont(QFont("helvetica",-1,QFont::Bold));
-    surnamelayout=new QHBoxLayout(this);
+    surnamelayout=new QHBoxLayout;
     surnamelayout->addWidget(surnamelabel);
     surnamelayout->addWidget(surnamebutt);
     gridlayout->addLayout(surnamelayout,3,1);
@@ -386,7 +380,7 @@ void ViewOrdine::aggiornaNome(QString x)
     namebutt->setText("Modifica");
     namelabel->setText(x);
     namelabel->setFont(QFont("helvetica",-1,QFont::Bold));
-    namelayout=new QHBoxLayout();
+    namelayout=new QHBoxLayout;
     namelayout->addWidget(namelabel);
     namelayout->addWidget(namebutt);
     gridlayout->addLayout(namelayout,3,3);
@@ -399,7 +393,7 @@ void ViewOrdine::aggiornaNumero(QString x)
     numberbutt->setText("Modifica");
     numberlabel->setText(x);
     numberlabel->setFont(QFont("helvetica",-1,QFont::Bold));
-    numberlayout=new QHBoxLayout();
+    numberlayout=new QHBoxLayout;
     numberlayout->addWidget(numberlabel);
     numberlayout->addWidget(numberbutt);
     gridlayout->addLayout(numberlayout,3,5);
@@ -408,8 +402,8 @@ void ViewOrdine::aggiornaNumero(QString x)
 //metodo che imposta il titolo della view
 void ViewOrdine::setTitle()
 {
-    titlelayout=new QHBoxLayout();
-    title=new QLabel("In Ordine",this);
+    titlelayout=new QHBoxLayout;
+    title=new QLabel("In Ordine");
     title->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
     title->setFont(QFont("courier",25,QFont::Bold));
     title->setAlignment(Qt::AlignCenter);
@@ -419,37 +413,37 @@ void ViewOrdine::setTitle()
 //metodo che imposta la label della data e dell'ora
 void ViewOrdine::setDateTime()
 {
-    datetime=new QLabel("Data e ora:",this);
-    datetimelabel=new QLabel(this);
-    datetimelayout=new QHBoxLayout();
+    datetime=new QLabel("Data e ora:");
+    datetimelabel=new QLabel();
+    datetimelayout=new QHBoxLayout;
     datetimelayout->addWidget(datetime,0,Qt::AlignRight);
 }
 
 //metodo che imposta la label e il combobox dei prodotti
 void ViewOrdine::setProduct()
 {
-    product=new QLabel("Prodotti:",this);
-    productcombo=new MyComboBox(this);
+    product=new QLabel("Prodotti:");
+    productcombo=new MyComboBox();
     productcombo->addItem("Torta");
     productcombo->addItem("Prodotto Dolce");
     productcombo->addItem("Prodotto Salato");
-    productbutt=new QPushButton("Inserisci prodotto",this);
-    productlayout=new QHBoxLayout();
+    productbutt=new QPushButton("Inserisci prodotto");
+    productlayout=new QHBoxLayout;
     productlayout->addWidget(product,0,Qt::AlignLeft);
     productlayout->addWidget(productcombo,0,Qt::AlignLeft);
     productlayout->addWidget(productbutt,0,Qt::AlignLeft);
-    listlayout=new QVBoxLayout();
+    listlayout=new QVBoxLayout;
 }
 
 //metodo che imposta le label dei clienti
 void ViewOrdine::setCustomer()
 {
-    surname=new QLabel("Cognome:",this);
-    name=new QLabel("Nome:",this);
-    number=new QLabel("Telefono:",this);
-    surnamelabel=new QLabel(this);
-    namelabel=new QLabel(this);
-    numberlabel=new QLabel(this);
+    surname=new QLabel("Cognome:");
+    name=new QLabel("Nome:");
+    number=new QLabel("Telefono:");
+    surnamelabel=new QLabel();
+    namelabel=new QLabel();
+    numberlabel=new QLabel();
     gridlayout->addWidget(surname,3,0);
     gridlayout->addWidget(name,3,2);
     gridlayout->addWidget(number,3,4);
@@ -458,9 +452,9 @@ void ViewOrdine::setCustomer()
 //metodo che imposta le label dei preventivo
 void ViewOrdine::setEstimate()
 {
-    estimatelayout=new QHBoxLayout();
-    estimatelabel= new QLabel(QString("Preventivo: ").append(QChar(8364)),this);
-    cashlabel= new QLabel("0",this);
+    estimatelayout=new QHBoxLayout;
+    estimatelabel= new QLabel("Preventivo:  €");
+    cashlabel= new QLabel("0");
     estimatelayout->addWidget(estimatelabel,0,Qt::AlignRight);
     estimatelayout->addWidget(cashlabel,0,Qt::AlignLeft);
 }
@@ -468,17 +462,17 @@ void ViewOrdine::setEstimate()
 //metodo che imposta i bottoni della view
 void ViewOrdine::setButtons()
 {
-    datetimebutt=new QPushButton("Inserisci data e ora",this);
+    datetimebutt=new QPushButton("Inserisci data e ora");
     datetimebutt->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
-    namebutt=new QPushButton("Inserisci nome",this);
+    namebutt=new QPushButton("Inserisci nome");
     namebutt->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
-    surnamebutt=new QPushButton("Inserisci cognome",this);
+    surnamebutt=new QPushButton("Inserisci cognome");
     surnamebutt->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
-    numberbutt=new QPushButton("Inserisci telefono",this);
+    numberbutt=new QPushButton("Inserisci telefono");
     numberbutt->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
-    savebutt=new QPushButton("Salva",this);
+    savebutt=new QPushButton("Salva");
     savebutt->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
-    savelayout=new QHBoxLayout();
+    savelayout=new QHBoxLayout;
     connect(datetimebutt,SIGNAL(clicked(bool)),this,SLOT(inserisciDataOra()));
     connect(numberbutt,SIGNAL(clicked(bool)),this,SLOT(inserisciNumero()));
     connect(surnamebutt,SIGNAL(clicked(bool)),this,SLOT(inserisciCognome()));
@@ -503,23 +497,21 @@ void ViewOrdine::setPreventivo(double x)
 //metodo che crea il dialog per l'inserimento di una torta
 void ViewOrdine::addTorta()
 {
-    dialbutton=new QDialog(this);
+    dialbutton=new QDialog();
     QHBoxLayout* layoutdialbutton=new QHBoxLayout();
-    QLabel * peso=new QLabel("Peso(Kg):",this);
-    MyLineEdit* pesoedit=new MyLineEdit(this);
-    pesoedit->setValidator(new QDoubleValidator(0,10,2,this));
+    QLabel * peso=new QLabel("Peso(Kg):");
+    MyLineEdit* pesoedit=new MyLineEdit();
+    pesoedit->setValidator(new QDoubleValidator(0,10,2));
     pesoedit->setPlaceholderText("in Kg");
-    QLabel * gusto=new QLabel("Gusto:",this);
-    MyComboBox* gustoedit=new MyComboBox(this);
+    QLabel * gusto=new QLabel("Gusto:");
+    MyComboBox* gustoedit=new MyComboBox();
     gustoedit->setEditable(true);
     gustoedit->addItem("Della casa");
     gustoedit->addItem("Pan di spagna con chantilly e fragole");
-    gustoedit->addItem("Pan di spagna con crema al cioccolato");
-    gustoedit->addItem("Mille foglie con crema chantilly");
-    MyCheckBox* immaginecheck=new MyCheckBox("Con immagine",this);
-    QLabel * scritta=new QLabel("Scritta di decorazione:",this);
-    MyLineEdit* scrittaedit=new MyLineEdit(this);
-    QPushButton* ok=new QPushButton("Ok",this);
+    MyCheckBox* immaginecheck=new MyCheckBox("Con immagine");
+    QLabel * scritta=new QLabel("Scritta di decorazione:");
+    MyLineEdit* scrittaedit=new MyLineEdit();
+    QPushButton* ok=new QPushButton("Ok");
     layoutdialbutton->addWidget(peso);
     layoutdialbutton->addWidget(pesoedit);
     layoutdialbutton->addWidget(gusto);
@@ -541,31 +533,28 @@ void ViewOrdine::addTorta()
     connect(immaginecheck,SIGNAL(inviaImmagine(bool)),this,SLOT(impostaImmagine(bool)));
     connect(ok,SIGNAL(clicked(bool)),this,SLOT(aggiungiTorta()));
     connect(ok,SIGNAL(clicked(bool)),dialbutton,SLOT(close()));
-
 }
 
 //metodo che crea il dialog per l'inserimento di un prod dolce
 void ViewOrdine::addDolce()
 {
-    dialbutton=new QDialog(this);
-    dialbutton->setAttribute(Qt::WA_DeleteOnClose,true);
+    dialbutton=new QDialog();
     QHBoxLayout* layoutdialbutton=new QHBoxLayout();
-    QLabel * peso=new QLabel("Peso(Kg):",this);
-    MyLineEdit* pesoedit=new MyLineEdit(this);
-    pesoedit->setValidator(new QDoubleValidator(0,10,2,this));
+    QLabel * peso=new QLabel("Peso(Kg):");
+    MyLineEdit* pesoedit=new MyLineEdit();
+    pesoedit->setValidator(new QDoubleValidator(0,10,2));
     pesoedit->setPlaceholderText("in Kg");
-    QLabel * tipo=new QLabel("Tipo:",this);
-    MyComboBox* tipoedit=new MyComboBox(this);
+    QLabel * tipo=new QLabel("Tipo:");
+    MyComboBox* tipoedit=new MyComboBox();
     tipoedit->setEditable(true);
     tipoedit->addItem("Pasticcini");
     tipoedit->addItem("Biscotti");
     tipoedit->addItem("Colomba");
-    tipoedit->addItem("Panettone");
-    QLabel * prezzo=new QLabel("Prezzo al Kg:",this);
-    MyLineEdit* prezzoedit=new MyLineEdit(this);
-    prezzoedit->setValidator(new QDoubleValidator(0,50,2,this));
+    QLabel * prezzo=new QLabel("Prezzo al Kg:");
+    MyLineEdit* prezzoedit=new MyLineEdit();
+    prezzoedit->setValidator(new QDoubleValidator(0,50,2));
     prezzoedit->setPlaceholderText("in Euro");
-    QPushButton* ok=new QPushButton("Ok",this);
+    QPushButton* ok=new QPushButton("Ok");
     layoutdialbutton->addWidget(peso);
     layoutdialbutton->addWidget(pesoedit);
     layoutdialbutton->addWidget(tipo);
@@ -590,23 +579,22 @@ void ViewOrdine::addDolce()
 //metodo che crea il dialog per l'inserimento di un prod salato
 void ViewOrdine::addSalato()
 {
-    dialbutton=new QDialog(this);
-    dialbutton->setAttribute(Qt::WA_DeleteOnClose,true);
+    dialbutton=new QDialog();
     QHBoxLayout* layoutdialbutton=new QHBoxLayout();
-    QLabel * pezzi=new QLabel("Pezzi:",this);
-    MyLineEdit* pezziedit=new MyLineEdit(this);
-    pezziedit->setValidator(new QIntValidator(0,300,this));
-    QLabel * tipo=new QLabel("Tipo:",this);
-    MyComboBox* tipoedit=new MyComboBox(this);
+    QLabel * pezzi=new QLabel("Pezzi:");
+    MyLineEdit* pezziedit=new MyLineEdit();
+    pezziedit->setValidator(new QIntValidator(0,300));
+    QLabel * tipo=new QLabel("Tipo:");
+    MyComboBox* tipoedit=new MyComboBox();
     tipoedit->setEditable(true);
     tipoedit->addItem("Tramezzini");
     tipoedit->addItem("Salatini");
     tipoedit->addItem("Pizzette");
-    QLabel * prezzo=new QLabel("Prezzo al Pezzo:",this);
-    MyLineEdit* prezzoedit=new MyLineEdit(this);
-    prezzoedit->setValidator(new QDoubleValidator(0,50,2,this));
+    QLabel * prezzo=new QLabel("Prezzo al Pezzo:");
+    MyLineEdit* prezzoedit=new MyLineEdit();
+    prezzoedit->setValidator(new QDoubleValidator(0,50,2));
     prezzoedit->setPlaceholderText("in Euro");
-    QPushButton* ok=new QPushButton("Ok",this);
+    QPushButton* ok=new QPushButton("Ok");
     layoutdialbutton->addWidget(pezzi);
     layoutdialbutton->addWidget(pezziedit);
     layoutdialbutton->addWidget(tipo);
