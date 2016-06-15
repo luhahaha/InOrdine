@@ -5,6 +5,11 @@ MyLineEdit::MyLineEdit(QString x,QWidget *parent):QLineEdit(x,parent)
 
 }
 
+MyLineEdit::MyLineEdit(QWidget *parent):QLineEdit(parent)
+{
+
+}
+
 void MyLineEdit::selezionaCognome()
 {
     emit inviaCognome(text());

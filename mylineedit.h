@@ -11,6 +11,7 @@ class MyLineEdit:public QLineEdit
     Q_OBJECT
 public:
     MyLineEdit(QString =QString(), QWidget* parent=0);
+    MyLineEdit(QWidget* parent=0);
 public slots:
     void selezionaCognome();
     void selezionaNumero();

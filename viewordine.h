@@ -19,7 +19,7 @@
 #include <QLineEdit>
 #include <QFileDialog>
 #include <QVector>
-
+#include <QCloseEvent>
 
 class ControllerOrdine;
 
@@ -78,6 +78,7 @@ public:
     void aggiungiRigaProdotto(Prodotto*);
     void setPreventivo(double);
     ~ViewOrdine();
+    void closeEvent(QCloseEvent *);
 public slots:
     void inserisciDataOra();
     void inserisciNome();
@@ -109,6 +110,7 @@ public slots:
     void eliminaRiga(int);
     void aggiornaRiga(int);
     void togliRigaProdotto(int);
+
 };
 
 #endif // VIEWORDINE_H

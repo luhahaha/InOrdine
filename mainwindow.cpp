@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QWidget*wdg=new QWidget;
     setTitle();
     createButtons();
-    QVBoxLayout* mainlayout=new QVBoxLayout;
+    mainlayout=new QVBoxLayout(wdg);
     mainlayout->addWidget(title);
     mainlayout->addLayout(layoutButtons);
     wdg->setLayout(mainlayout);
@@ -20,9 +20,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::createButtons()
 {
-    newOrdine = new QPushButton("Nuovo Ordine");
-    loadOrdine = new QPushButton("Carica Ordine");
-    layoutButtons = new QVBoxLayout;
+    newOrdine = new QPushButton("Nuovo Ordine",this);
+    loadOrdine = new QPushButton("Carica Ordine",this);
+    layoutButtons = new QVBoxLayout();
     layoutButtons->addWidget(newOrdine);
     layoutButtons->addWidget(loadOrdine);
     connect(newOrdine,SIGNAL(clicked(bool)),this,SLOT(newordine()));
@@ -47,7 +47,7 @@ void MainWindow::loadordine()
 
 void MainWindow::setTitle()
 {
-    title=new QLabel("In Ordine");
+    title=new QLabel("In Ordine",this);
     title->setFont(QFont("courier",25,QFont::Bold));
     title->setAlignment(Qt::AlignCenter);
 }
