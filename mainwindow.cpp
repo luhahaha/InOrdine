@@ -36,7 +36,7 @@ void MainWindow::newordine()
 
 void MainWindow::loadordine()
 {
-    QString nomefile=QFileDialog::getOpenFileName(this,tr("Salva ordine"),QDir::currentPath(),tr("Ordine (*.xml)"));
+    QString nomefile=QFileDialog::getOpenFileName(this,tr("Salva ordine"),QDir::currentPath(),tr("XML (*.xml);; Tutti i files (*.*)"));
     if(!nomefile.isEmpty()){
         controller=new ControllerOrdine(this);
         controller->caricaOrdine(nomefile);

@@ -31,10 +31,10 @@ void ViewOrdine::aggiungiRigaProdotto(Prodotto * prod)
 {
     if(n<N)
     {
-        container[n]=new MyWidget(n,this);
+        container[n]=new MyWidget(n);
         riga=new QHBoxLayout();
         if(Torta* torta=dynamic_cast<Torta*>(prod)){
-            QLabel* tipoprodottolabel=new QLabel("Torta:");
+            QLabel* tipoprodottolabel=new QLabel("Torta: ");
             riga->addWidget(tipoprodottolabel);
             QLabel* pesolabel=new QLabel("Peso(Kg): ",container[n]);
             riga->addWidget(pesolabel);
@@ -69,7 +69,7 @@ void ViewOrdine::aggiungiRigaProdotto(Prodotto * prod)
         else{
             if(Dolce* dolce=dynamic_cast<Dolce*>(prod))
             {
-                QLabel* tipoprodottolabel=new QLabel("Prodotto Dolce:",this);
+                QLabel* tipoprodottolabel=new QLabel("Prodotto Dolce: ",this);
                 riga->addWidget(tipoprodottolabel);
                 QLabel* pesolabel=new QLabel("Peso(Kg): ",container[n]);
                 riga->addWidget(pesolabel);
@@ -81,7 +81,7 @@ void ViewOrdine::aggiungiRigaProdotto(Prodotto * prod)
                 QLabel* tipo=new QLabel(dolce->getTipo(),container[n]);
                 tipo->setFont(QFont("helvetica",-1,QFont::Bold));
                 riga->addWidget(tipo);
-                QLabel* prezzolabel=new QLabel("Prezzo al Kg(€): ",container[n]);
+                QLabel* prezzolabel=new QLabel(QString("Prezzo al Kg: ").append(QChar(8364)),container[n]);
                 riga->addWidget(prezzolabel);
                 QLabel* prezzo=new QLabel(QString::number(dolce->getPrezzo()),container[n]);
                 prezzo->setFont(QFont("helvetica",-1,QFont::Bold));
@@ -110,7 +110,7 @@ void ViewOrdine::aggiungiRigaProdotto(Prodotto * prod)
                     QLabel* tipo=new QLabel(salato->getTipo(),container[n]);
                     tipo->setFont(QFont("helvetica",-1,QFont::Bold));
                     riga->addWidget(tipo);
-                    QLabel* prezzolabel=new QLabel("Prezzo per pezzo(€): ",container[n]);
+                    QLabel* prezzolabel=new QLabel(QString("Prezzo per pezzo: ").append(QChar(8364)),container[n]);
                     riga->addWidget(prezzolabel);
                     QLabel* prezzo=new QLabel(QString::number(salato->getPrezzo()),container[n]);
                     prezzo->setFont(QFont("helvetica",-1,QFont::Bold));
@@ -333,7 +333,8 @@ void ViewOrdine::impostaPrezzoDolce(double x)
 //metodo che apre il dialog per selezionare il nome con cui salvare l'ordine
 void ViewOrdine::salvaordine()
 {
-    QString nomefile=QFileDialog::getSaveFileName(this,tr("Salva ordine"),QDir::currentPath(),tr("Ordine (*.xml)"));
+    QString nomefile=QFileDialog::getSaveFileName(this,tr("Salva ordine"),QDir::currentPath());
+    nomefile.append(QString(".xml"));
     controller->saveOrdine(nomefile);
 }
 
@@ -374,7 +375,7 @@ void ViewOrdine::aggiornaCognome(QString x)
     surnamelabel->setText(x);
     surnamebutt->setText("Modifica");
     surnamelabel->setFont(QFont("helvetica",-1,QFont::Bold));
-    surnamelayout=new QHBoxLayout(this);
+    surnamelayout=new QHBoxLayout();
     surnamelayout->addWidget(surnamelabel);
     surnamelayout->addWidget(surnamebutt);
     gridlayout->addLayout(surnamelayout,3,1);

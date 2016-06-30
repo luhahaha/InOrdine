@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ordine>
+    <dataora>20-06-16 10:30</dataora>
+    <prodotti>
+        <salato>
+            <tipo>Salatini</tipo>
+            <pezzi>15</pezzi>
+            <prezzo>0.5</prezzo>
+        </salato>
+        <salato>
+            <tipo>Pizzette</tipo>
+            <pezzi>25</pezzi>
+            <prezzo>1.2</prezzo>
+        </salato>
+        <dolce>
+            <peso>0.7</peso>
+            <tipo>Biscotti</tipo>
+            <prezzo>29</prezzo>
+        </dolce>
+        <torta>
+            <peso>1.2</peso>
+            <gusto>Pan di spagna con crema al cioccolato</gusto>
+            <immagine>1</immagine>
+            <scritta>Buon Compleanno</scritta>
+        </torta>
+    </prodotti>
+    <cliente>
+        <cognome>Rossi</cognome>
+        <nome>Paolo</nome>
+        <numero>1234567890</numero>
+    </cliente>
+</ordine>

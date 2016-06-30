@@ -67,6 +67,7 @@ void Contenitore::togli(int i)
     else{
         togliere=aux->next;
         aux->next=aux->next->next;
+        togliere->next=0;
         delete togliere;
     }
     }
@@ -82,7 +83,6 @@ Prodotto *Contenitore::getProdotto(int i) const
 
 void Contenitore::aggiorna(int i, Prodotto * x)
 {
-
     Nodo* aux=primo;
     if(primo->prod->ID==i){
         primo->prod=x;

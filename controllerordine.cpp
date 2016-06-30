@@ -193,7 +193,7 @@ void ControllerOrdine::modificaProdotto(int n)
     Prodotto* aux=model->getOrdine(n);
     if(Torta*torta=dynamic_cast<Torta*>(aux)){
         creaTorta(view->n);
-        QDialog* dialbutton=new QDialog(view);
+        QDialog* dialbutton=new QDialog();
         QHBoxLayout* layoutdialbutton=new QHBoxLayout(dialbutton);
         QLabel * peso=new QLabel("Peso(Kg):",dialbutton);
         MyLineEdit* pesoedit=new MyLineEdit(torta->getPeso().toString(),dialbutton);
@@ -230,8 +230,8 @@ void ControllerOrdine::modificaProdotto(int n)
         QObject::connect(gustoedit,SIGNAL(inviaScritta(QString)),view,SLOT(impostaGusto(QString)));
         QObject::connect(scrittaedit,SIGNAL(inviaScritta(QString)),view,SLOT(impostaScritta(QString)));
         QObject::connect(immaginecheck,SIGNAL(inviaImmagine(bool)),view,SLOT(impostaImmagine(bool)));
-        QObject::connect(ok,SIGNAL(clicked(bool)),view,SLOT(aggiungiTorta()));
         QObject::connect(ok,SIGNAL(clicked(bool)),view->container[n],SLOT(eliminaRiga()));
+        QObject::connect(ok,SIGNAL(clicked(bool)),view,SLOT(aggiungiTorta()));
         QObject::connect(ok,SIGNAL(clicked(bool)),dialbutton,SLOT(close()));
     }
     else{
@@ -268,8 +268,8 @@ void ControllerOrdine::modificaProdotto(int n)
             QObject::connect(pesoedit,SIGNAL(inviaPesoDolce(double)),view,SLOT(impostaPesoDolce(double)));
             QObject::connect(tipoedit,SIGNAL(inviaScritta(QString)),view,SLOT(impostaTipo(QString)));
             QObject::connect(prezzoedit,SIGNAL(inviaPrezzo(double)),view,SLOT(impostaPrezzoDolce(double)));
-            QObject::connect(ok,SIGNAL(clicked(bool)),view,SLOT(aggiungiDolce()));
             QObject::connect(ok,SIGNAL(clicked(bool)),view->container[n],SLOT(eliminaRiga()));
+            QObject::connect(ok,SIGNAL(clicked(bool)),view,SLOT(aggiungiDolce()));
             QObject::connect(ok,SIGNAL(clicked(bool)),dialbutton,SLOT(close()));
         }
         else{
@@ -306,8 +306,8 @@ void ControllerOrdine::modificaProdotto(int n)
                 QObject::connect(pezziedit,SIGNAL(inviaPezzi(int)),view,SLOT(impostaPezzi(int)));
                 QObject::connect(tipoedit,SIGNAL(inviaScritta(QString)),view,SLOT(impostaTipoSalato(QString)));
                 QObject::connect(prezzoedit,SIGNAL(inviaPrezzo(double)),view,SLOT(impostaPrezzo(double)));
-                QObject::connect(ok,SIGNAL(clicked(bool)),view,SLOT(aggiungiSalato()));
                 QObject::connect(ok,SIGNAL(clicked(bool)),view->container[n],SLOT(eliminaRiga()));
+                QObject::connect(ok,SIGNAL(clicked(bool)),view,SLOT(aggiungiSalato()));
                 QObject::connect(ok,SIGNAL(clicked(bool)),dialbutton,SLOT(close()));
             }
 
